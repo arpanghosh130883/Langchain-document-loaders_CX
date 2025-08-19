@@ -11,7 +11,8 @@ pdf_loader = DirectoryLoader(
 txt_loader = DirectoryLoader(
     path='books',
     glob='*.txt',
-    loader_cls=TextLoader
+    loader_cls=TextLoader,
+    loader_kwargs={"encoding": "utf-8", "autodetect_encoding": True}
 )
 
 # Combine the two loaders
@@ -20,3 +21,4 @@ docs = list(pdf_loader.lazy_load()) + list(txt_loader.lazy_load())
 # Print metadata for each document
 for document in docs:
     print(document.metadata)
+
